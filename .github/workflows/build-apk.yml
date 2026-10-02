@@ -28,6 +28,9 @@ jobs:
         with:
           gradle-version: '8.10.2'
 
+        - name: Enable AndroidX
+        run: echo "android.useAndroidX=true" > productbook/gradle.properties
+
       - name: Build APK
         working-directory: productbook
         run: gradle assembleDebug --no-daemon
