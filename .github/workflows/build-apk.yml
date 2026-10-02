@@ -31,6 +31,18 @@ jobs:
         run: |
           echo "android.useAndroidX=true" > productbook/gradle.properties
 
+      - name: Fix Kotlin dependency conflict
+        working-directory: productbook
+        run: |
+          cat >> app/build.gradle <<'EOF'
+
+          configurations.all {
+              resolutionStrategy.force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22'
+              resolutionStrategy.force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
+              resolutionStrategy.force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+          }
+          EOF
+
       - name: Build APK
         working-directory: productbook
         run: gradle assembleDebug --no-daemon
