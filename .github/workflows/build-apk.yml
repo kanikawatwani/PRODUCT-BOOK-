@@ -13,7 +13,7 @@ jobs:
 
       - name: Extract Android project
         run: |
-          unzip -o Product_Book_Android_Ready.zip -d productbook
+          unzip -o  Product_Book_Android_Icon_Updated.zip-d productbook
           ls -la productbook
 
       - name: Set up Java
